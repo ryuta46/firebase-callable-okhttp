@@ -12,6 +12,9 @@ export const helloWorldOnCall = functions.https.onCall(async (data, context) => 
     const text = data.text || "";
     const uid = context.auth.uid;
 
+    console.log(context.auth.token);
+    console.log(context.instanceIdToken);
+
     console.log("start sleep");
     await sleep(20000);
     console.log("end sleep");

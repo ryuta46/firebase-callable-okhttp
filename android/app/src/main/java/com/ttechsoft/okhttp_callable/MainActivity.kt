@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (task.isSuccessful) {
-                instanceId = task.result?.id
+                instanceId = task.result?.token
                 enableButtons()
             }
             else {
