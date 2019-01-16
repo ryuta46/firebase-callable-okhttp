@@ -8,9 +8,13 @@ export const helloWorld = functions.https.onRequest((request, response) => {
 });
 
 
-export const helloWorldOnCall = functions.https.onCall((data, context) => {
-    const text = data.text;
+export const helloWorldOnCall = functions.https.onCall(async (data, context) => {
+    const text = data.text || "";
     const uid = context.auth.uid;
+
+    console.log("start sleep");
+    await sleep(20000);
+    console.log("end sleep");
 
     return {
         message: "Hello World from onCall.",
@@ -18,3 +22,11 @@ export const helloWorldOnCall = functions.https.onCall((data, context) => {
         text: text
     };
 });
+
+
+function sleep(milliseconds: number) {
+    return new Promise<void>(resolve => {
+        setTimeout(() => resolve(), milliseconds);
+    });
+}
+
